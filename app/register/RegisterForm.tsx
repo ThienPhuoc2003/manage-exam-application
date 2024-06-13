@@ -65,12 +65,8 @@ const RegisterForm:React.FC<RegisterFormProps> = ({currentUser}) => {
 
     }
     return (  <>
-    <Heading title="Đăng ký thành viên LuxeGlobal"/>
-    <Button 
-    outline
-    label="Đăng nhập với Google"
-    icon={AiOutlineGoogle}
-    onClick={() => {signIn('google') }}/>
+    <Heading title="Đăng ký thành viên "/>
+   
     <hr className="bg-slate-300 w-full h-px"/>
     <Input id="name"
     label="Tên người dùng"
@@ -91,14 +87,14 @@ const RegisterForm:React.FC<RegisterFormProps> = ({currentUser}) => {
     errors={errors}
     required
     type="password"/>
-        <Select
+       <Select
                 id="role"
                 label="Chức vụ"
                 disabled={isLoading}
                 register={register}
                 errors={errors}
                 options={[
-                    { value: "GIANGVIEN", label: "Giáo viên" },
+                    { value: "GIANGVIEN", label: "Giảng viên " },
                     { value: "TRUONGBOMON", label: "Trưởng bộ môn" },
                     { value: "GIAOVUKHOA", label: "Giáo vụ khoa" },
                 ]}
