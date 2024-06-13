@@ -3,14 +3,22 @@ import Container from "../ components/Container";
 
 import LoginForm from "./LoginForm";
 import FormWrap from "../ components/FormWrap";
+import NullData from "../ components/NullData";
 
-const Login = async () => {
-    const currentUser = await getCurrentUser()
-    return ( <Container>
+const Giangvienlogin = async () => {
+    const currentUser = await getCurrentUser();
+
+    if(!currentUser||currentUser.role != 'GIANGVIEN')
+    {
+
+        return <NullData title='Rất tiếc!Quyền truy cập bị từ chối'/>;
+
+    }
+    return ( <div className="pt-8"><Container>
         <FormWrap>
         <LoginForm currentUser = {currentUser}/>
         </FormWrap>
-    </Container> );
+    </Container> 
+    /</div>);
 }
- 
-export default Login;
+export default Giangvienlogin;
