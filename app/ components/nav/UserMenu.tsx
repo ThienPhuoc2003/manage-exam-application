@@ -50,14 +50,14 @@ const UserMenu:React.FC<UserMenuProps> = ({currentUser}) => {
             flex-col
             cursor-pointer">
                 {currentUser ?  <div>
-                    <Link href="/orders">
-
-                    <MenuItem onClick={toggleOpen}>Bạn đặt hàng</MenuItem>
+                <Link href="/giangvien">
+                    <MenuItem onClick={toggleOpen}>Trang giảng viên</MenuItem>
                 </Link>
-                <Link href="/admin">
-                    <MenuItem onClick={toggleOpen}>Bảng của quản lý</MenuItem>
-
-                    <MenuItem onClick={toggleOpen}>Đơn đặt hàng của bạn</MenuItem>
+                <Link href="/truongbomon">
+                    <MenuItem onClick={toggleOpen}>Trang trưởng bộ môn</MenuItem>
+                </Link>
+                <Link href="/giaovukhoa">
+                    <MenuItem onClick={toggleOpen}>Trang giáo vụ khoa</MenuItem>
                 </Link>
                 <Link href="/admin">
                     <MenuItem onClick={toggleOpen}>Trang quản trị viên</MenuItem>
@@ -79,7 +79,9 @@ const UserMenu:React.FC<UserMenuProps> = ({currentUser}) => {
                     <Link href="/Giaovukhoalogin">
                     <MenuItem onClick={toggleOpen}>Đăng nhập giáo vụ khoa </MenuItem>
                     </Link>
-                    
+                    <Link href="/login">
+                    <MenuItem onClick={toggleOpen}>Đăng nhập</MenuItem>
+                    </Link>
                     <Link href="/register">
                     <MenuItem onClick={toggleOpen}>Đăng ký</MenuItem>
                     </Link>
