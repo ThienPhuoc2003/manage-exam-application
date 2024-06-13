@@ -16,6 +16,17 @@ export async function getCurrentUser() {
             where: {
                 email: session?.user?.email,
             },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                emailVerified: true,
+                image: true,
+                hashedPassword: true,
+                createdAt: true,
+                updateAt: true,
+                role: true,  // Thêm trường role
+            }
         });
         if (!currentUser) {
             return null;
