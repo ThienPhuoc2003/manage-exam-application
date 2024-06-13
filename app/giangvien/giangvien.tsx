@@ -1,11 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
 
-interface LayoutProps {
+interface GiangvienClientProps {
   children: React.ReactNode;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const GiangvienClient: React.FC<GiangvienClientProps> = ({ children }) => {
   return (
     <div>
       <Head>
@@ -24,4 +24,4 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   );
 };
 
-export default Layout;
+export default GiangvienClient;
