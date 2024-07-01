@@ -1,27 +1,33 @@
-import React, { ReactNode } from 'react';
-import Header from '../ components/Header';
+import React from 'react';
 import { getCurrentUser } from '@/actions/getCurrentUser';
 import NullData from '../ components/NullData';
-import Container from '../ components/Container';
-import FormWrap from '../ components/FormWrap';
-import GiangVienLogin from '../Giangvienlogin/LoginForm';
-import GiangvienClient from './giangvien';
+import GiangvienClient from './layout';
 
-const giangvien = async() => {
-  const currentUser = await getCurrentUser()
-  if(!currentUser || currentUser.role !=="GIANGVIEN"){
 
-      return <NullData title="Không thể truy cập"/>
+const GiangvienPage: React.FC = () => {
+  const checkAccess = async () => {
+    try {
+      const currentUser = await getCurrentUser();
+      if (!currentUser || currentUser.role !== "GIANGVIEN") {
+        return <NullData title="Không thể truy cập" />;
+      }
+      return (
+        <div className="p-8">
+          <GiangvienClient>
+            <div>
+              {/* Nội dung của GiangvienClient */}
+            
+            </div>
+          </GiangvienClient>
+        </div>
+      );
+    } catch (error) {
+      console.error('Lỗi khi kiểm tra quyền truy cập:', error);
+      return <NullData title="Rất tiếc! Quyền truy cập bị từ chối" />;
+    }
+  };
 
-      return <NullData title="Rất tiếc! Quyền truy cập bị từ chối "/>
+  return checkAccess();
+};
 
-  }
-  return (  <div className="p-8 ">
-  <Container>
-      <FormWrap>
-          <GiangvienClient children={undefined}/>
-      </FormWrap>
-      </Container></div>);
-}
-
-export default giangvien;
+export default GiangvienPage;
