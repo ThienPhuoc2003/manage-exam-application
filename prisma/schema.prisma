@@ -1,43 +1,62 @@
+
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
 generator client {
   provider        = "prisma-client-js"
-} 
+}
+
 model Account {
   id                 String  @id @default(auto()) @map("_id") @db.ObjectId
   userId             String  @db.ObjectId
   type               String
   provider           String
   providerAccountId  String
-  refresh_token      String?  @db.String
-  access_token       String?  @db.String
+  refresh_token      String? @db.String
+  access_token       String? @db.String
   expires_at         Int?
   token_type         String?
   scope              String?
-  id_token           String?  @db.String
+  id_token           String? @db.String
   session_state      String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
+
 model User {
   id            String  @id @default(auto()) @map("_id") @db.ObjectId
-  name         String?
-  email         String?   @unique
+  name          String?
+  email         String?  @unique
   emailVerified DateTime?
-  image          String?
+  image         String?
   hashedPassword String?
-  createdAt DateTime @default(now())
-  updateAt DateTime @updatedAt
-  role String?
+  createdAt     DateTime @default(now())
+  updateAt      DateTime @updatedAt
+  role          String?
   accounts      Account[]
- 
+  sentExams     Exam[] @relation("SentExams")
+  receivedExams Exam[] @relation("ReceivedExams")
 }
-type Image{
-  color String 
+
+model Exam {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  filePath    String
+  description String
+  senderId    String   @db.ObjectId
+  recipientId String   @db.ObjectId
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  sender   User @relation("SentExams", fields: [senderId], references: [id])
+  recipient User @relation("ReceivedExams", fields: [recipientId], references: [id])
+}
+
+type Image {
+  color     String
   colorCode String
-  image String
+  image     String
 }
