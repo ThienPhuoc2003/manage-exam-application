@@ -70,15 +70,6 @@ const UserMenu:React.FC<UserMenuProps> = ({currentUser}) => {
                 }} >Đăng xuất 
                 </MenuItem>
                  </div> : <div>
-                    <Link href="/Giangvienlogin">
-                    <MenuItem onClick={toggleOpen}>Đăng nhập giảng viên</MenuItem>
-                    </Link>
-                    <Link href="/Truongbomonlogin">
-                    <MenuItem onClick={toggleOpen}>Đăng nhập trưởng bộ môn</MenuItem>
-                    </Link>
-                    <Link href="/Giaovukhoalogin">
-                    <MenuItem onClick={toggleOpen}>Đăng nhập giáo vụ khoa </MenuItem>
-                    </Link>
                     <Link href="/login">
                     <MenuItem onClick={toggleOpen}>Đăng nhập</MenuItem>
                     </Link>
