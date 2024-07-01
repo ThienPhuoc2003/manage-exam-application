@@ -55,13 +55,8 @@ if(currentUser)
 }
   return (
     <>
-      <Heading title="Đăng nhập thành viên LuxeGlobal" />
-      <Button
-        outline
-        label="Tiếp tục đăng nhập với Google"
-        icon={AiOutlineGoogle}
-        onClick={() => {signIn('google') }}
-      />
+      <Heading title="Đăng nhập " />
+    
       <hr className="bg-slate-300 w-full h-px" />
       <Input
         id="email"
