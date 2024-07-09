@@ -38,21 +38,21 @@ model User {
   updateAt      DateTime @updatedAt
   role          String?
   accounts      Account[]
-  sentExams     Exam[] @relation("SentExams")
-  receivedExams Exam[] @relation("ReceivedExams")
+  examsSent     Exam[]    @relation("SentExams")
+  examsReceived Exam[]    @relation("ReceivedExams")
 }
 
 model Exam {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  filePath    String
-  description String
-  senderId    String   @db.ObjectId
-  recipientId String   @db.ObjectId
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  sender   User @relation("SentExams", fields: [senderId], references: [id])
-  recipient User @relation("ReceivedExams", fields: [recipientId], references: [id])
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  fileId        String   // URL hoặc ID của tệp được tải lên
+  description   String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  // Liên kết với người gửi (sender) và người nhận (recipient)
+  sender        User     @relation("SentExams", fields: [senderId], references: [id])
+  senderId      String
+  recipient     User     @relation("ReceivedExams", fields: [recipientId], references: [id])
+  recipientId   String
 }
 
 type Image {
